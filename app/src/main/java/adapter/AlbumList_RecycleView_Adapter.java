@@ -27,6 +27,7 @@ import java.util.List;
 import ModalClass.AlbumListModalClass;
 import ModalClass.ListModalClass;
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import creativeuiux.musicapp.DiscoverActivity;
 import creativeuiux.musicapp.MusicPlayerActivity;
 import creativeuiux.musicapp.R;
 import creativeuiux.musicapp.Utils;
@@ -97,6 +98,11 @@ public void onBindViewHolder(final MyViewHolder holder, final int position){
                                  context.startActivities(new Intent[]{intent});
 
                                 recentlist.add(modalClass);
+
+
+                                 if (context instanceof DiscoverActivity) {
+                                     ((DiscoverActivity)context).updatelist();
+                                 }
 
 
 

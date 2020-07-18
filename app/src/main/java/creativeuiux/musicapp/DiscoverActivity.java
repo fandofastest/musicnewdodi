@@ -2,25 +2,16 @@ package creativeuiux.musicapp;
 
 import android.content.Context;
 import android.graphics.Shader;
-import android.graphics.Typeface;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import android.widget.TextView;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.material.tabs.TabLayout;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +22,7 @@ import ModalClass.GenreModalClass;
 import ModalClass.ListModalClass;
 
 import adapter.AlbumList_RecycleView_Adapter;
+import adapter.TabAdapter;
 import adapter.Treding_RecycleView_Adapter;
 
 public class DiscoverActivity extends AppCompatActivity {
@@ -77,8 +69,13 @@ public class DiscoverActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
+
 }
 
+
+    public void updatelist(){
+        adapter.notifyDataSetChanged();
+    }
 
 
 
