@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<creativeuiux.musicapp.CarouselLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp">
+
+    <ImageView
+        android:id="@+id/pagerImg"
+        android:layout_width="210dp"
+        android:layout_height="155dp"
+        android:scaleType="fitXY"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/badshah1" />
+
+    </androidx.cardview.widget.CardView>
+
+    <customfonts.MyTextView_Poppins_SemiBold
+        android:id="@+id/tv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginBottom="-3dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#4f4f4f"
+        android:text="O.N.E."
+        />
+
+    <customfonts.MyTextView_Poppins_Regular
+        android:id="@+id/tv_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:textColor="#c9c9c9"
+        android:text="Badshah"
+        />
+</creativeuiux.musicapp.CarouselLinearLayout>
