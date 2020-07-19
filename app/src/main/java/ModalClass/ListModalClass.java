@@ -6,7 +6,7 @@ package ModalClass;
 
 public class ListModalClass {
 
-    private String title,id,imageurl,duration,artist;
+    private String title,id,imageurl,duration,artist,type;
 
 
 
@@ -14,6 +14,13 @@ public class ListModalClass {
 
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getId() {
         return id;

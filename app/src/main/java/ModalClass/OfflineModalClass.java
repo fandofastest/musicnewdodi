@@ -2,32 +2,39 @@ package ModalClass;
 
 public class OfflineModalClass {
 
-   String name1;
-   String name2;
+  String filename,filepath,type;
 
    public OfflineModalClass(){
 
 
    }
 
-    public OfflineModalClass(String name1, String name2) {
-        this.name1 = name1;
-        this.name2 = name2;
+    public OfflineModalClass(String filename, String filepath) {
+        this.filename = filename;
+        this.filepath = filepath;
     }
 
-    public String getName1() {
-        return name1;
+    public String getType() {
+        return type;
     }
 
-    public void setName1(String name1) {
-        this.name1 = name1;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getName2() {
-        return name2;
+    public String getFilename() {
+        return filename;
     }
 
-    public void setName2(String name2) {
-        this.name2 = name2;
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public String getFilepath() {
+        return filepath;
+    }
+
+    public void setFilepath(String filepath) {
+        this.filepath = filepath;
     }
 }

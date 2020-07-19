@@ -75,16 +75,6 @@ public class MyMusicActivity extends AppCompatActivity {
 
 
 
-        // Playlists  List
-        playlistModalClassArrayList = new ArrayList<>();
-        playlistModalClassArrayList.add(new PlaylistModalClass(R.drawable.artist1,"Workout"));
-        playlistModalClassArrayList.add(new PlaylistModalClass(R.drawable.artist2,"Bollywood Hits"));
-        playlistModalClassArrayList.add(new PlaylistModalClass(R.drawable.artist3,"Hip Hop"));
-        playlistModalClassArrayList.add(new PlaylistModalClass(R.drawable.artist1,"Workout"));
-        playlistModalClassArrayList.add(new PlaylistModalClass(R.drawable.artist2,"Bollywood Hits"));
-        playlistModalClassArrayList.add(new PlaylistModalClass(R.drawable.artist3,"Hip Hop"));
-
-        mPlaylist_Adapter = new Playlist_RecycleView_Adapter(MyMusicActivity.this,playlistModalClassArrayList);
 
         RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(MyMusicActivity.this);
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);

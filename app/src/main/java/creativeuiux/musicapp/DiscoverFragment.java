@@ -60,7 +60,7 @@ public class DiscoverFragment extends Fragment {
     ArrayList<GenreModalClass> genreModalClassArrayList;
 
 
-    List<ListModalClass> listsongTopchart = new ArrayList<>();
+   public static List<ListModalClass> listdiscover = new ArrayList<>();
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -117,10 +117,10 @@ public class DiscoverFragment extends Fragment {
         //Treding List
         genreModalClassArrayList = new ArrayList<>();
         genreModalClassArrayList.add(new GenreModalClass(R.drawable.treding_img1,"Alternative Rock"));
-        genreModalClassArrayList.add(new GenreModalClass(R.drawable.treding_img2,"Ambient"));
-        genreModalClassArrayList.add(new GenreModalClass(R.drawable.treding_img3,"Audiobooks"));
-        genreModalClassArrayList.add(new GenreModalClass(R.drawable.treding_img1,"Business"));
-        mTreding_Adapter = new Treding_RecycleView_Adapter(context,genreModalClassArrayList);
+        genreModalClassArrayList.add(new GenreModalClass(R.drawable.treding_img2,"Rock"));
+        genreModalClassArrayList.add(new GenreModalClass(R.drawable.treding_img3,"Pop"));
+        genreModalClassArrayList.add(new GenreModalClass(R.drawable.treding_img1,"Country"));
+        mTreding_Adapter = new Treding_RecycleView_Adapter(context,genreModalClassArrayList,DiscoverFragment.this);
         LinearLayoutManager layoutManager2
                 = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         genre_recycleview.setLayoutManager(layoutManager2);
@@ -129,11 +129,16 @@ public class DiscoverFragment extends Fragment {
         Typeface typeface = Typeface.createFromAsset(context.getAssets(), customFont);
         TextView textView2 = view. findViewById(R.id.treding_singles);
         textView2.setTypeface(typeface);
-        topchart_adapter = new AlbumList_RecycleView_Adapter(context,listsongTopchart);
+        topchart_adapter = new AlbumList_RecycleView_Adapter(context,listdiscover);
         LinearLayoutManager layoutManager1 = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         topchart_recycleview.setLayoutManager(layoutManager1);
         topchart_recycleview.setAdapter(topchart_adapter);
+
+
+
+
         gettopchart();
+
 
 
 
@@ -143,12 +148,10 @@ public class DiscoverFragment extends Fragment {
 
     }
 
-    public void gettopchart(){
-
-
-
-        String url="https://api-v2.soundcloud.com/charts?charts-top:all-music&&high_tier_only=false&kind=top&limit=100&client_id=z7xDdzwjM6kB7fmXCd06c8kU6lFNtBCT";
-
+    public void getgenrechart(final String genre){
+        listdiscover.clear();
+        topchart_recycleview.removeAllViews();
+        String url="https://api-v2.soundcloud.com/charts?genre=soundcloud:genres:"+genre+"&high_tier_only=false&kind=top&limit=100&client_id=z7xDdzwjM6kB7fmXCd06c8kU6lFNtBCT";
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -168,6 +171,72 @@ public class DiscoverFragment extends Fragment {
                         listModalClass.setTitle(jsonObject.getString("title"));
                         listModalClass.setImageurl(jsonObject.getString("artwork_url"));
                         listModalClass.setDuration(jsonObject.getString("full_duration"));
+                        listModalClass.setType("online");
+                        listModalClass.setArtist(genre);
+
+
+//                        System.out.println(jsonArray3);
+
+
+                        listdiscover.add(listModalClass);
+//
+
+
+
+//                        Toast.makeText(getActivity(),id,Toast.LENGTH_LONG).show();
+
+
+                    }
+
+
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                topchart_adapter.notifyDataSetChanged();
+//                songAdapter.notifyDataSetChanged();
+                //    System.out.println("update"+listsongModalSearch);
+
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        Volley.newRequestQueue(context).add(jsonObjectRequest);
+
+
+    }
+
+    public void gettopchart(){
+        String url="https://api-v2.soundcloud.com/charts?charts-top:all-music&&high_tier_only=false&kind=top&limit=100&client_id=z7xDdzwjM6kB7fmXCd06c8kU6lFNtBCT";
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+//                linearLayout.setVisibility(View.GONE);
+//                System.out.println(response);
+
+
+                try {
+                    JSONArray jsonArray1=response.getJSONArray("collection");
+
+                    for (int i = 0;i<jsonArray1.length();i++){
+                        JSONObject jsonObject1=jsonArray1.getJSONObject(i);
+                        JSONObject jsonObject=jsonObject1.getJSONObject("track");
+                        ListModalClass listModalClass = new ListModalClass();
+                        listModalClass.setId(jsonObject.getString("id"));
+                        listModalClass.setTitle(jsonObject.getString("title"));
+                        listModalClass.setImageurl(jsonObject.getString("artwork_url"));
+                        listModalClass.setDuration(jsonObject.getString("full_duration"));
+                        listModalClass.setType("online");
 
 
                         JSONObject   jsonArray3=jsonObject.getJSONObject("publisher_metadata");
@@ -175,7 +244,7 @@ public class DiscoverFragment extends Fragment {
                         System.out.println(jsonArray3);
 
 
-                        listsongTopchart.add(listModalClass);
+                        listdiscover.add(listModalClass);
 //
 
 

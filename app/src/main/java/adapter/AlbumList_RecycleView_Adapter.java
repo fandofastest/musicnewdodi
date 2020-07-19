@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import androidx.annotation.RequiresApi;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Environment;
@@ -18,20 +19,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.krossovochkin.bottomsheetmenu.BottomSheetMenu;
 
 import java.util.List;
 
-import ModalClass.AlbumListModalClass;
 import ModalClass.ListModalClass;
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import creativeuiux.musicapp.DiscoverActivity;
 import creativeuiux.musicapp.MusicPlayerActivity;
 import creativeuiux.musicapp.R;
 import creativeuiux.musicapp.Utils;
 
+import static creativeuiux.musicapp.DiscoverActivity.playlists;
 import static creativeuiux.musicapp.DiscoverActivity.recentlist;
 
 
@@ -95,7 +96,10 @@ public void onBindViewHolder(final MyViewHolder holder, final int position){
                                  intent.putExtra("artist",modalClass.getArtist());
                                  intent.putExtra("duration",modalClass.getDuration());
                                  intent.putExtra("imgurl",modalClass.getImageurl());
+                                 intent.putExtra("type",modalClass.getType());
+                                 intent.putExtra("pos",position);
                                  context.startActivities(new Intent[]{intent});
+
 
                                 recentlist.add(modalClass);
 
@@ -109,6 +113,9 @@ public void onBindViewHolder(final MyViewHolder holder, final int position){
                                  break;
 
                              case R.id.addtopl:
+
+                                 playlists.add(modalClass);
+                                 Toast.makeText(context,"Added To Playlists",Toast.LENGTH_SHORT).show();
 
 //                                 SweetAlertDialog pDialog = new SweetAlertDialog(ctx, SweetAlertDialog.PROGRESS_TYPE);
 //                                 pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));

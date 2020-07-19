@@ -1,17 +1,20 @@
 package adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
 import ModalClass.OfflineModalClass;
+import creativeuiux.musicapp.MusicPlayerActivity;
 import creativeuiux.musicapp.R;
 
 
@@ -43,9 +46,21 @@ public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 @Override
 public void onBindViewHolder(final MyViewHolder holder, final int position){
-        OfflineModalClass modalClass = offlineModalClassList.get(position);
-        holder.name1.setText(modalClass.getName1());
-        holder.name2.setText(modalClass.getName2());
+        final OfflineModalClass modalClass = offlineModalClassList.get(position);
+        holder.name1.setText(modalClass.getFilename());
+        holder.lyoffline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, MusicPlayerActivity.class);
+                intent.putExtra("path",modalClass.getFilepath());
+                intent.putExtra("title",modalClass.getFilename());
+                intent.putExtra("type",modalClass.getType());
+                intent.putExtra("pos",position);
+                context.startActivities(new Intent[]{intent});
+
+            }
+        });
+
         }
 
 @Override
@@ -56,15 +71,16 @@ public int getItemCount() {
 public class MyViewHolder extends RecyclerView.ViewHolder {
 
 
-    TextView name1,name2;
-
+    TextView name1;
+    LinearLayout lyoffline;
 
     public MyViewHolder(View view) {
         super(view);
 
 
         name1 = (TextView) view.findViewById(R.id.name1);
-        name2 = (TextView) view.findViewById(R.id.name2);
+        lyoffline=view.findViewById(R.id.offlinely);
+
 
 
     }

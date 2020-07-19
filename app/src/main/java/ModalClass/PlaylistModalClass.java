@@ -2,32 +2,58 @@ package ModalClass;
 
 public class PlaylistModalClass {
 
-    int image;
-    String name;
+    private String title,id,imageurl,duration,artist;
 
     public PlaylistModalClass(){
 
 
     }
 
-    public PlaylistModalClass(int image, String name) {
-        this.image = image;
-        this.name = name;
+    public PlaylistModalClass(String title, String id, String imageurl, String duration, String artist) {
+        this.title = title;
+        this.id = id;
+        this.imageurl = imageurl;
+        this.duration = duration;
+        this.artist = artist;
     }
 
-    public int getImage() {
-        return image;
+    public String getTitle() {
+        return title;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getName() {
-        return name;
+    public String getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getImageurl() {
+        return imageurl;
+    }
+
+    public void setImageurl(String imageurl) {
+        this.imageurl = imageurl;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
     }
 }
